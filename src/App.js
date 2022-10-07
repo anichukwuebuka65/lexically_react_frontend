@@ -32,7 +32,6 @@ class App extends Component {
     let {scrollTop, clientHeight,scrollHeight} = this.scrollRef.current
     if(scrollTop + clientHeight > scrollHeight - 700 && this.fetching === false) {
       this.fetching = true
-      //this.scrollRef.current.scrollBy(0,-100)
       this.photoRef.current.fetchPhotos(10)
       .then((result)=> {
         this.handleFetch(result)
