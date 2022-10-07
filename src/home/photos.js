@@ -47,7 +47,7 @@ import { unsplash } from "./unsplash"
       if(this.props.photos.length === 0 ) {
         return (
           <div className='w-1/2 mx-auto mt-14'>
-            <div className=' mx-auto h-20 w-20 animate-loading rounded-full border-4 border-y-blue-500'></div>
+            <div className=' mx-auto h-10 w-10 animate-loading rounded-full border-4 border-y-blue-500'></div>
           </div>)
       }
       if(window.innerWidth > 950) {
