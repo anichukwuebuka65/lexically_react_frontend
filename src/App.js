@@ -24,7 +24,6 @@ class App extends Component {
   }
 
   handleSearch(items) {
-    console.log(items[5].urls.regular)
     this.setState({ photos: items })
   }
 
@@ -43,7 +42,7 @@ class App extends Component {
         <IntroSection >
           <SearchInput handleSearch={this.handleSearch}/>
         </IntroSection>
-        <Categories photos={this.state.photos}>
+        <Categories handleSearch={this.handleSearch} photos={this.state.photos}>
           <Photos  ref={this.photoRef} handleFetch={this.handleFetch} photos={this.state.photos}/>
         </Categories>
       </div>

@@ -1,4 +1,6 @@
 import React, { Component } from 'react'
+import { unsplash } from "./unsplash"
+
 
 class Categories extends Component {
   constructor(){
@@ -16,6 +18,13 @@ class Categories extends Component {
       ...state,
       selected: item
     }))
+    unsplash.search.getPhotos({
+      query: item
+  })
+  .then(res => {
+      this.props.handleSearch(res.response.results)
+  })
+  .catch(err => console.log(err))
   }
 
 
