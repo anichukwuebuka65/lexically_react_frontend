@@ -34,7 +34,7 @@ class Categories extends Component {
       <div className='flex justify-center bg-slate-200'>
         <div  className='justify-center'>
           {this.state.contentsList.map((item, i) => <div key={item} onClick={() => this.handleClick(item)} 
-          className={`z-40 hover:cursor-pointer hover:bg-slate-500 hover:text-white h-10 inline-block
+          className={`z-40 hover:cursor-pointer h-10 inline-block
           ${this.state.selected === item && "border-b-2 border-purple-900"} py-1 px-2`}>
             {item}
           </div>)}
