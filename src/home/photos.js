@@ -14,16 +14,19 @@ import { unsplash } from "./unsplash"
     }
 
     fetchPhotos(numPerPage = 20) {
-       unsplash.photos.list({page: this.page, perPage: numPerPage},{signal: this.controller.signal})
-      .then(res => {
-        this.props.handleFetch(res?.response.results)
-        this.page++
-      })
-      .catch(err => console.log(err))
-    }
-
+      return new Promise((resolve, reject) => {
+        unsplash.photos.list({page: this.page, perPage: numPerPage},{signal: this.controller.signal})
+        .then(res => {
+          resolve(res?.response.results)
+          this.page++
+        })
+        .catch(err => reject(err))
+        }
+      )
+  }
     componentDidMount(){
       this.fetchPhotos()
+      .then((result => this.props.handleFetch(result)))
     }
 
     componentWillUnmount(){

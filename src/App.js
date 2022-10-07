@@ -14,6 +14,7 @@ class App extends Component {
     }
     this.scrollRef = React.createRef()
     this.photoRef = React.createRef()
+    this.fetching = false
     this.handleFetch = this.handleFetch.bind(this)
     this.handleSearch = this.handleSearch.bind(this)
     this.loadMore = this.loadMore.bind(this)
@@ -29,9 +30,15 @@ class App extends Component {
 
   loadMore(){
     let {scrollTop, clientHeight,scrollHeight} = this.scrollRef.current
-    if(scrollTop + clientHeight > scrollHeight - 700) {
-      this.scrollRef.current.scrollBy(0,-100)
-      setTimeout(() => this.photoRef.current.fetchPhotos(10),1000)
+    if(scrollTop + clientHeight > scrollHeight - 700 && this.fetching === false) {
+      this.fetching = true
+      //this.scrollRef.current.scrollBy(0,-100)
+      this.photoRef.current.fetchPhotos(10)
+      .then((result)=> {
+        this.handleFetch(result)
+      })
+      .finally(()=>this.fetching  = false)
+
     }
   }
 
