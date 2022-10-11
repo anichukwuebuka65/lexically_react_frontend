@@ -5,10 +5,9 @@ import { unsplash } from "./unsplash"
 class Categories extends Component {
   constructor(){
     super()
-    this.num = 20;
     this.state = {
-      contentsList : ["Random","Mountain","Cars","Houses","Rivers","Furnitures","Planes","Trees"],
-      selected: "Random",
+      contentsList : ["Editorial","Nature","Architecture","Fashion","Wallpapers","Interiors","History","Athletics"],
+      selected: "Editorial",
     }
     this.handleClick = this.handleClick.bind(this)
   }
@@ -20,11 +19,11 @@ class Categories extends Component {
     }))
     unsplash.search.getPhotos({
       query: item
-  })
-  .then(res => {
-      this.props.handleSearch(res.response.results)
-  })
-  .catch(err => console.log(err))
+    })
+    .then(res => {
+        this.props.handleSearch(res.response.results)
+    })
+    .catch(err => console.log(err))
   }
 
 
@@ -33,11 +32,11 @@ class Categories extends Component {
       <>
       <div className='flex justify-center bg-slate-200'>
         <div  className='justify-center'>
-          {this.state.contentsList.map((item, i) => <div key={item} onClick={() => this.handleClick(item)} 
+          {this.state.contentsList.map((item, i) => <b key={item} onClick={() => this.handleClick(item)}
           className={`z-40 hover:cursor-pointer h-10 inline-block
           ${this.state.selected === item && "border-b-2 border-purple-900"} py-1 px-2`}>
             {item}
-          </div>)}
+          </b>)}
         </div>
       </div>
       <div className='w-full'>{this.props.children}</div>

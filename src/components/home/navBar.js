@@ -1,8 +1,8 @@
 import React, { Component } from 'react'
 import { BiUpload } from "react-icons/bi"
-import { AiOutlineDown } from "react-icons/ai"
 import { AiOutlineMenu } from "react-icons/ai"
 import { IoClose } from "react-icons/io5"
+import { Link } from 'react-router-dom'
 
 class NavBar extends Component {
 
@@ -27,28 +27,29 @@ class NavBar extends Component {
   render() {
 
     return (
-      <>
+      <div className='fixed right-0 left-0 z-40'>
         <div className="z-20 relative flex justify-between items-center h-14 bg-slate-100 ">
           <div className='text-4xl ml-12 italic font-semibold font-serif '>
             lexical
           </div>
-          <div className='sm:flex hidden justify-center items-center space-x-6 mr-8 text-xl'>
-            <div className='flex items-end space-x-1'><span>Explore</span><AiOutlineDown/></div>
-            <div>SignIn</div>
-            <div className='flex items-center space-x-2 font-bold font-mono rounded-full py-px px-3 tracking-wide bg-emerald-900 text-white '>
-              <span><BiUpload/></span><span>Upload</span>
-            </div>
+          <div className='sm:flex hidden font-mono justify-center items-center space-x-6 mr-8 text-lg'>
+            <Link to="/collections" className=' hover:cursor-pointer hover:underline'>collections</Link>
+            <a href="http://localhost:5000/redirect" className='hover:cursor-pointer hover:underline'>signIn</a>
+            <button onClick={this.props.toggleUploadModal} className='flex items-center space-x-2 font-bold font-mono rounded-full py-px px-3 tracking-wide bg-emerald-900 text-white '>
+              <span><BiUpload/></span>
+              <b>Upload</b>
+            </button>
           </div>
-          <div onClick={this.toggleMenuButton} className={`${!this.state.showMenuButton && "hidden"} sm:hidden mr-8 text-2xl hover:cursor-pointer`}><AiOutlineMenu/></div>
-          <div onClick={this.toggleMenuButton} className={`${this.state.showMenuButton && "hidden"} sm:hidden mr-8 text-2xl hover:cursor-pointer`}><IoClose/></div>
+          <button onClick={this.toggleMenuButton} className={`${!this.state.showMenuButton && "hidden"} sm:hidden mr-8 text-2xl hover:cursor-pointer`}><AiOutlineMenu/></button>
+          <button onClick={this.toggleMenuButton} className={`${this.state.showMenuButton && "hidden"} sm:hidden mr-8 text-2xl hover:cursor-pointer`}><IoClose/></button>
         </div>
         <div className={`absolute ${this.state.showMenuButton && !this.state.firstRender ? "animate-hideslow" : !this.state.showMenuButton && "animate-dropslow "}
          z-0 -top-14 sm:hidden font-semibold items-center border-b-2 border-slate-500 text-white py-1.5 px-3 bg-cyan-900 w-full`}>
           <div className='mb-2'>Explore</div>
           <div className='mb-2'>SignIn</div>
-          <div>Upload</div>
+          <button onClick={this.props.toggleUploadModal}>Upload</button>
         </div>
-      </>
+      </div>
     )
   }
 }

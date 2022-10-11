@@ -8,12 +8,25 @@ import { unsplash } from "./unsplash"
         this.state = {
             photos: [],
         }
+      this.lastPhotoRef = React.createRef()
       this.page = 1
       this.controller = new AbortController()
+      this.observer = new IntersectionObserver((entries) => {
+        if(entries[0].isIntersecting) {
+          this.fetchPhotos(10)
+          .then((result) => this.props.handleFetch(result))
+        }
+      })
+      this.observer2 = new IntersectionObserver((entries) => {
+        if(entries[0].isIntersecting){
+          this.props.displayButton()
+        }
+      })
       this.renderPhotosByDiv = this.renderPhotosByDiv.bind(this)
     }
 
     fetchPhotos(numPerPage = 20) {
+      this.observer.disconnect()
       return new Promise((resolve, reject) => {
         unsplash.photos.list({page: this.page, perPage: numPerPage},{signal: this.controller.signal})
         .then(res => {
@@ -26,7 +39,16 @@ import { unsplash } from "./unsplash"
   }
     componentDidMount(){
       this.fetchPhotos()
-      .then((result => this.props.handleFetch(result)))
+      .then((result => {
+        this.props.handleFetch(result)
+      }))
+    }
+
+    componentDidUpdate(){
+     if(this.lastPhotoRef.current) {
+      this.observer.observe(this.lastPhotoRef.current)
+      this.observer2.observe(this.lastPhotoRef.current)
+     }
     }
 
     componentWillUnmount(){
@@ -51,7 +73,12 @@ import { unsplash } from "./unsplash"
           </div>)
       }
       if(window.innerWidth > 950) {
-        const divPhotos1 = this.renderPhotosByDiv(2,this.props.photos,3).map(item => <Photo key={item.id}  values={item}/>)
+        const divPhotos1 = this.renderPhotosByDiv(2,this.props.photos,3).map((item,i) => {
+          if(i >= (this.props.photos.length /3) - 2) {
+            return (<Photo ref={this.lastPhotoRef} key={item.id}  values={item}/>)
+          }
+        return <Photo key={item.id}  values={item}/>
+      })
         const divPhotos2 = this.renderPhotosByDiv(1,this.props.photos,3).map(item => <Photo key={item.id}  values={item}/>)
         const divPhotos3 = this.renderPhotosByDiv(3,this.props.photos,3).map(item => <Photo key={item.id}  values={item}/>)
 
@@ -64,13 +91,18 @@ import { unsplash } from "./unsplash"
         )
 
       } else {
-        const divPhotos1 = this.renderPhotosByDiv(1,this.props.photos,2).map(item => <Photo key={item.id} values={item}/>)
+        const divPhotos1 = this.renderPhotosByDiv(1,this.props.photos,2).map((item, i) => {
+          if(i >= (this.props.photos.length / 2) - 2) {
+            return (<Photo ref={this.lastPhotoRef} key={item.id}  values={item}/>)
+          }
+          return <Photo key={item.id}  values={item}/>
+      })
         const divPhotos2 = this.renderPhotosByDiv(2,this.props.photos,2).map(item => <Photo key={item.id} values={item}/>)
 
         return (
           <div className='sm:grid sm:grid-cols-2 lg:grid-cols-3 gap-2'>
-            <div>{divPhotos1}</div>
             <div>{divPhotos2}</div>
+            <div>{divPhotos1}</div>
           </div>
         )
       }
