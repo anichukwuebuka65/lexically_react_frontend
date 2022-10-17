@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
 import { unsplash } from './home/unsplash'
+import Photos from './photos'
 
 export class Collections extends Component {
     constructor(props) {
@@ -18,13 +19,10 @@ export class Collections extends Component {
     }
 
   render() {
-    console.log(this.state.collections)
     return (
-      <div className='grid grid-cols-3 gap-3'>
-        {this.state.collections.map(item => (
-        <img src ={item.cover_photo.urls.regular}/>
-        ))}
-      </div>
+      <>
+        <Photos photos={this.state.collections} link="collections"/>
+      </>
     )
   }
 }

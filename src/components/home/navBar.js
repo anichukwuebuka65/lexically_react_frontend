@@ -27,11 +27,11 @@ class NavBar extends Component {
   render() {
 
     return (
-      <div className='fixed right-0 left-0 z-40'>
+      <header className='fixed right-0 left-0 z-40'>
         <div className="z-20 relative flex justify-between items-center h-14 bg-slate-100 ">
-          <div className='text-4xl ml-12 italic font-semibold font-serif '>
+          <Link to="/home" className='text-4xl ml-12 italic font-semibold font-serif '>
             lexical
-          </div>
+          </Link>
           <div className='sm:flex hidden font-mono justify-center items-center space-x-6 mr-8 text-lg'>
             <Link to="/collections" className=' hover:cursor-pointer hover:underline'>collections</Link>
             <a href="http://localhost:5000/redirect" className='hover:cursor-pointer hover:underline'>signIn</a>
@@ -49,7 +49,7 @@ class NavBar extends Component {
           <div className='mb-2'>SignIn</div>
           <button onClick={this.props.toggleUploadModal}>Upload</button>
         </div>
-      </div>
+      </header>
     )
   }
 }

@@ -1,13 +1,14 @@
 import React, { Component } from 'react'
 import { unsplash } from "./unsplash"
 import {GoSearch} from "react-icons/go" 
+import WithNavigate from '../withNavigate'
 
 class SearchInput extends Component {
-constructor(props){
-    super(props)
-    this.state = {
-        search: ""
-    }
+    constructor(props){
+        super(props)
+        this.state = {
+            search: "",
+        }
 
     this.handleSearch = this.handleSearch.bind(this)
     this.submit = this.submit.bind(this)
@@ -26,11 +27,13 @@ constructor(props){
         })
         .then(res => {
             this.props.handleSearch(res.response.results)
+            this.props.navigate("/search")
         })
         .catch(err => console.log(err))
     }
 
   render() {
+
     return (
         <>
             <form  className='flex items-center justify-between mt-5 bg-white h-12 rounded-lg'>
@@ -44,4 +47,4 @@ constructor(props){
   }
 }
 
-export default SearchInput
+export default WithNavigate(SearchInput)

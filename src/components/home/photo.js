@@ -2,6 +2,7 @@ import React, { Component } from 'react'
 import {Link} from "react-router-dom"
 
 const Photo = React.forwardRef((props, ref) => {
+
   class Photo extends Component {
     constructor(props) {
       super(props)
@@ -10,7 +11,6 @@ const Photo = React.forwardRef((props, ref) => {
         photoDetails: props.values
       }
       this.imageRef = React.createRef()
-      
     }
 
   componentDidMount(){
@@ -22,13 +22,15 @@ const Photo = React.forwardRef((props, ref) => {
 
 
     render() {
-      const {id, urls, description,} = this.state.photoDetails
+      const {id,description,} = this.state.photoDetails
+      const urls = this.state.photoDetails.urls ? this.state.photoDetails.urls : this.state.photoDetails.cover_photo.urls
 
       return (
-        <Link to={`/photo-detail/${id}`}>
+        <Link to={`/${this.props.link}/${id}`}>
         <div  ref={ref} className={` rounded-md border mt-2 p-1.5 shadow-md `}>
           <div className=' rounded-md border shadow-sm bg-slate-100'> 
-              <img ref={this.imageRef} src={urls.regular} className='hover:cursor-pointer w-full' alt={description}/>
+              <img ref={this.imageRef} src={urls.regular} 
+              className='hover:cursor-pointer w-full' alt={description}/>
           </div>
         </div>
         </Link>
@@ -36,7 +38,7 @@ const Photo = React.forwardRef((props, ref) => {
     }
   }
 
-  return <Photo {...props}/>
+  return <Photo  {...props}/>
 })
 
 export default Photo
