@@ -45,8 +45,8 @@ class NavBar extends Component {
         </div>
         <div className={`absolute ${this.state.showMenuButton && !this.state.firstRender ? "animate-hideslow" : !this.state.showMenuButton && "animate-dropslow "}
          z-0 -top-14 sm:hidden font-semibold items-center border-b-2 border-slate-500 text-white py-1.5 px-3 bg-cyan-900 w-full`}>
-          <div className='mb-2'>Explore</div>
-          <div className='mb-2'>SignIn</div>
+          <Link to="/collections" className='mb-2'>Collections</Link>
+          <a href="http://localhost:5000/redirect" className='mb-2'>SignIn</a>
           <button onClick={this.props.toggleUploadModal}>Upload</button>
         </div>
       </header>
