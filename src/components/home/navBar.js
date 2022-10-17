@@ -29,7 +29,7 @@ class NavBar extends Component {
     return (
       <header className='fixed right-0 left-0 z-40'>
         <div className="z-20 relative flex justify-between items-center h-14 bg-slate-100 ">
-          <Link to="/" className='text-4xl px-6  italic font-black rounded-sm border-zinc-400 ml-2 font-mono border-2'>
+          <Link to="/" className='md:text-4xl md:px-6  italic font-black rounded-sm ml-2 font-mono'>
           <span>Lexical</span>
           </Link>
           <div className='sm:flex hidden font-mono justify-center items-center space-x-6 mr-8 text-lg'>
