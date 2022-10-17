@@ -29,8 +29,8 @@ class NavBar extends Component {
     return (
       <header className='fixed right-0 left-0 z-40'>
         <div className="z-20 relative flex justify-between items-center h-14 bg-slate-100 ">
-          <Link to="/home" className='text-4xl ml-12 italic font-semibold font-serif '>
-            lexical
+          <Link to="/" className='text-4xl px-6  italic font-black rounded-sm border-zinc-400 ml-2 font-mono border-2'>
+          <span>Lexical</span>
           </Link>
           <div className='sm:flex hidden font-mono justify-center items-center space-x-6 mr-8 text-lg'>
             <Link to="/collections" className=' hover:cursor-pointer hover:underline'>collections</Link>

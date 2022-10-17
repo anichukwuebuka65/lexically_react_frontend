@@ -39,11 +39,11 @@ class App extends Component {
     return (
       <Routes>
         <Route path="/" element={<Layout ref={this.layoutRef}>
-        <IntroSection >
-          <SearchInput handleSearch={this.handleSearch}/>
-        </IntroSection>
+          <IntroSection >
+            <SearchInput handleSearch={this.handleSearch}/>
+          </IntroSection>
           </Layout>}>
-          <Route path="home" element={
+          <Route index element={
                 <Home photos={this.state.photos} displayButton={this.displayButton} handleFetch={this.handleFetch} />
               } />
           <Route path="search" element = { <SearchResults photos={this.state.photos} />} />
