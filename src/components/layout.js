@@ -35,7 +35,7 @@ class Layout extends Component {
         return (
             <>
                 <div ref={this.scrollRef} className=" h-screen overflow-auto z-10">
-                    <NavBar toggleUploadModal={this.toggleUploadModal}/>
+                    <NavBar navBarVisibility={this.props.navBarVisibility} toggleUploadModal={this.toggleUploadModal}/>
                     {this.props.children}
                     <Outlet/>
                     <button ref={this.buttonRef} onClick={this.goUp} className='hidden animate-bounce fixed bottom-9 right-12 rounded-full bg-white text-3xl'>

@@ -45,11 +45,11 @@ class PhotoDetails extends Component {
     }
 
     return (
-        <main onClick={this.closeModal} className='h-screen absolute bg-opacity-60 top-0 bg-slate-100 overflow-auto w-full z-50'>
-            <button onClick={() => this.props.navigate(-1)} className=' rounded-full inline-block mt-6 ml-6  bg-white p-px text-3xl' >
+        <main onClick={this.closeModal} className='h-screen absolute md:bg-opacity-40 top-0 bg-white md:bg-zinc-900 overflow-auto w-full z-50'>
+            <button onClick={() => this.props.navigate(-1)} className=' rounded-full inline-block mt-6 ml-6 md:text-white p-px text-4xl' >
                 <IoClose/>
             </button>
-            <div className='bg-white -mt-5 md:w-2/3 sm:w-3/4 mx-auto py-6 md:px-28 md:py-7 rounded-md'>
+            <div className='bg-white  md:w-2/3 sm:w-3/4 mx-auto py-6 md:px-28 md:py-7 rounded-md'>
                 <div className=' rounded-lg border shadow-md '> 
                     <img ref={this.imageRef} src={urls?.regular} className=' w-full' alt={description}/>
                     <p className='text-sm mx-2 font-mono italic'>

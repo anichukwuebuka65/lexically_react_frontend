@@ -8,7 +8,8 @@ import { unsplash } from "./unsplash"
         super()
         this.state = {
             photos: [],
-            loading: false
+            loading: false,
+            err: null
         }
       this.lastPhotoRef = React.createRef()
       this.page = 1
@@ -41,6 +42,7 @@ import { unsplash } from "./unsplash"
       .then((result => {
         this.setState(state => ({...state, photos: result}))
       }))
+      .catch(() => this.setState(state => ({...state, err: "something went wrong"})))
     }
 
     componentDidUpdate(){
@@ -69,6 +71,7 @@ import { unsplash } from "./unsplash"
     }
 
     render() {
+      if(this.state.err) return this.state.err
       return(
         <div className='relative'> 
           <Categories handleSearch={this.handleSearch}/>

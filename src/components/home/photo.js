@@ -8,7 +8,6 @@ const Photo = React.forwardRef((props, ref) => {
       super(props)
       this.state = {
         showDetails: false,
-        photoDetails: props.values
       }
       this.imageRef = React.createRef()
     }
@@ -22,17 +21,19 @@ const Photo = React.forwardRef((props, ref) => {
 
 
     render() {
-      const {id,description,} = this.state.photoDetails
-      const urls = this.state.photoDetails.urls ? this.state.photoDetails.urls : this.state.photoDetails.cover_photo.urls
+      const {values:{id, description}, link} = this.props
+      const urls = this.props.values.urls ? this.props.values.urls : this.props.values.cover_photo.urls
+      const title = this.props.values.title
 
       return (
-        <Link to={`/${this.props.link}/${id}`}>
-        <div  ref={ref} className={` rounded-md border mt-2 p-1.5 shadow-md `}>
-          <div className=' rounded-md border shadow-sm bg-slate-100'> 
-              <img ref={this.imageRef} src={urls.regular} 
-              className='hover:cursor-pointer w-full' alt={description}/>
+        <Link to={`/${link}/${id}?title=${title}`}>
+          <div ref={ref} className={` rounded-md border mt-2 p-1.5 shadow-md `}>
+            <div className=' rounded-md border shadow-sm bg-slate-100'> 
+            {title && <h2 className='font-mono text-center font-bold py-2 text-lg'>{title}</h2>}
+                <img ref={this.imageRef} src={urls.regular} 
+                className='hover:cursor-pointer w-full' alt={description}/>
+            </div>
           </div>
-        </div>
         </Link>
       )
     }

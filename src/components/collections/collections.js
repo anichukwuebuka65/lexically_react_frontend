@@ -1,10 +1,10 @@
 import React, { Component } from 'react'
-import { unsplash } from './home/unsplash'
-import Photos from './photos'
+import { unsplash } from '../home/unsplash'
+import CollectionHeader from './collectionHeader'
 
 export class Collections extends Component {
-    constructor(props) {
-      super(props)
+    constructor() {
+      super()
       this.state = {
         collections: []
       }
@@ -21,7 +21,8 @@ export class Collections extends Component {
   render() {
     return (
       <>
-        <Photos photos={this.state.collections} link="collections"/>
+        <CollectionHeader/>
+        {this.props.render(this.state.collections)}
       </>
     )
   }

@@ -6,11 +6,10 @@ import { Link } from 'react-router-dom'
 
 class NavBar extends Component {
 
-  constructor(props){
-    super(props)
+  constructor(){
+    super()
     this.state = {
-      isNavVisible: "none",
-      showMenuButton: true,
+      showMenuButton: false,
       firstRender: true
     }
     this.toggleMenuButton = this.toggleMenuButton.bind(this)
@@ -24,7 +23,10 @@ class NavBar extends Component {
     }))
   }
 
+
+
   render() {
+    const {showMenuButton} = this.state
 
     return (
       <header className='fixed right-0 left-0 z-40'>
@@ -33,20 +35,20 @@ class NavBar extends Component {
           <span>Lexical</span>
           </Link>
           <div className='sm:flex hidden font-mono justify-center items-center space-x-6 mr-8 text-lg'>
+            <Link to="/" className='hover:cursor-pointer hover:underline'>Home</Link>
             <Link to="/collections" className=' hover:cursor-pointer hover:underline'>collections</Link>
-            <a href="http://localhost:5000/redirect" className='hover:cursor-pointer hover:underline'>signIn</a>
             <button onClick={this.props.toggleUploadModal} className='flex items-center space-x-2 font-bold font-mono rounded-full py-px px-3 tracking-wide bg-emerald-900 text-white '>
               <span><BiUpload/></span>
               <b>Upload</b>
             </button>
           </div>
-          <button onClick={this.toggleMenuButton} className={`${!this.state.showMenuButton && "hidden"} sm:hidden mr-8 text-2xl hover:cursor-pointer`}><AiOutlineMenu/></button>
-          <button onClick={this.toggleMenuButton} className={`${this.state.showMenuButton && "hidden"} sm:hidden mr-8 text-2xl hover:cursor-pointer`}><IoClose/></button>
+          <button onClick={this.toggleMenuButton} className={`${showMenuButton && "hidden"} sm:hidden mr-8 text-2xl hover:cursor-pointer`}><AiOutlineMenu/></button>
+          <button onClick={this.toggleMenuButton} className={`${!showMenuButton && "hidden"} sm:hidden mr-8 text-2xl hover:cursor-pointer`}><IoClose/></button>
         </div>
-        <div className={`absolute ${this.state.showMenuButton && !this.state.firstRender ? "animate-hideslow" : !this.state.showMenuButton && "animate-dropslow "}
+        <div className={`absolute ${!showMenuButton && !this.state.firstRender ? "animate-hideslow" : showMenuButton && "animate-dropslow "}
          z-0 -top-14 sm:hidden font-semibold items-center border-b-2 border-slate-500 text-white py-1.5 px-3 bg-cyan-900 w-full`}>
-          <Link to="/collections" className='mb-2'>Collections</Link>
-          <a href="http://localhost:5000/redirect" className='mb-2 block'>SignIn</a>
+          <Link to="/" onClick={this.toggleMenuButton} className='mb-2'>Home</Link>
+          <Link to="/collections" onClick={this.toggleMenuButton} className='mb-2 block'>Collections</Link>
           <button onClick={this.props.toggleUploadModal}>Upload</button>
         </div>
       </header>

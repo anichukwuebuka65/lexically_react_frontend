@@ -9,7 +9,8 @@ class SearchInput extends Component {
         this.state = {
             search: "",
         }
-
+    this.controller = new AbortController()
+    this.signal = this.controller.signal
     this.handleSearch = this.handleSearch.bind(this)
     this.submit = this.submit.bind(this)
     }
@@ -24,12 +25,16 @@ class SearchInput extends Component {
         event.preventDefault()
         unsplash.search.getPhotos({
             query: this.state.search
-        })
+        },{signal: this.signal})
         .then(res => {
             this.props.handleSearch(res.response.results)
             this.props.navigate("/search")
         })
         .catch(err => console.log(err))
+    }
+
+    componentWillUnmount(){
+        this.controller.abort()
     }
 
   render() {
