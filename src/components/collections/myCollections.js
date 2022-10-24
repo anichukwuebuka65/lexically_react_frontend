@@ -1,4 +1,4 @@
-import React, { useCallback, useEffect, useState } from 'react'
+import React, { useCallback, useLayoutEffect, useState } from 'react'
 import { unsplash } from '../home/unsplash'
 import Photos from '../photos'
 import CollectionHeader from './collectionHeader'
