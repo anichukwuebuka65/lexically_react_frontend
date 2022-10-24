@@ -27,7 +27,7 @@ export class SignIn extends Component {
     const {name, error} = this.state
 
     return (
-      <form action={name ? "http://localhost:5000/redirect" : "#"}>
+      <form action={name ? "https://lexically-backend.herokuapp.com/redirect" : "#"}>
         {error && <p className='text-sm italic text-center block'>{error}</p>}
         <input onChange={this.handleFileChange} value={name} type="text" className='w-2/3 mx-auto block mb-3 placeholder:tracking-wide placeholder:italic focus:outline-none rounded-md p-2 border' 
         placeholder="Your unsplash username"/>
