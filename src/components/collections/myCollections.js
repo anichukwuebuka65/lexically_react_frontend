@@ -34,7 +34,7 @@ function MyCollections(props) {
         .then(data => setCollections(data))
     }
 
-    useEffect(() => {
+    useLayoutEffect(() => {
         const username = sessionStorage.getItem("lexically__name")
         fetchCollections(username).then( data => setCollections(data))
     },[fetchCollections])
