@@ -1,7 +1,6 @@
 import React, { Component } from 'react'
 import {AiOutlineArrowUp} from "react-icons/ai"
 import { Outlet } from "react-router-dom"
-import Upload from "./upload"
 import { IoClose } from "react-icons/io5"
 
 class Layout extends Component {
@@ -33,11 +32,11 @@ class Layout extends Component {
                         <AiOutlineArrowUp/>
                     </button> 
                     {this.props.isUploadModalOpen && 
-                    <div  className=' absolute min-h-60 w-full sm:w-96 top-16 sm:right-2 border-2 sm:rounded-xl bg-gray-50 z-50'>
+                    <div  className=' absolute min-h-60 w-full sm:w-96 top-16 sm:right-2 shadow-lg sm:rounded-md bg-white z-50'>
                         <button onClick={this.toggleUploadModal} className=' rounded-full inline-block bg-gray-400 text-white mt-2 ml-2 p-px text-2xl' >
                             <IoClose/>
                         </button>
-                        <Upload />
+                        {this.props.signIn}
                     </div>}
                 </div>
             </>

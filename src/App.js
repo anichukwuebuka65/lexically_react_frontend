@@ -13,6 +13,7 @@ import MyCollections from './components/collections/myCollections'
 import Photos from './components/photos'
 import NavBar from './components/home/navBar'
 import CollectionHeader from './components/collections/collectionHeader'
+import SignIn from './components/signIn'
 
 class App extends Component {
   constructor(props) {
@@ -57,11 +58,16 @@ class App extends Component {
 
     return (
       <Routes>
-        <Route path="/" element={<Layout isUploadModalOpen={isUploadModalOpen} ref={this.layoutRef} 
-        render={data => <NavBar firstRender={firstRender} toggleMenuButton={this.toggleMenuButton} showMenuButton={showMenuButton} toggleUploadModal={data}/>}>
-          <IntroSection >
-            <SearchInput handleSearch={this.handleSearch}/>
-          </IntroSection>
+        <Route path="/" element={
+          <Layout 
+            isUploadModalOpen={isUploadModalOpen} 
+            ref={this.layoutRef}
+            signIn={<SignIn token={this.props.token}/>} 
+            render={data => <NavBar firstRender={firstRender} toggleMenuButton={this.toggleMenuButton} showMenuButton={showMenuButton} toggleUploadModal={data}/>}
+            >
+            <IntroSection >
+              <SearchInput handleSearch={this.handleSearch}/>
+            </IntroSection>
           </Layout>}>
           <Route index element={
                 <Home photos={photos} displayButton={this.displayButton} handleFetch={this.handleFetch} />
