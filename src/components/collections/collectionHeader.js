@@ -2,7 +2,7 @@ import React from 'react'
 import { Link } from 'react-router-dom'
 
 function CollectionHeader(props) {
-    const username = localStorage.getItem("lexically__name")
+    const username = sessionStorage.getItem("lexically__name")
   return (
     <header className='pt-2'>
         <ul className='font-semibold font-mono flex justify-center items-center space-x-4'>
