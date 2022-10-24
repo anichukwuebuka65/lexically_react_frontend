@@ -1,6 +1,5 @@
 import React, { Component } from 'react'
 import { unsplash } from '../home/unsplash'
-import CollectionHeader from './collectionHeader'
 
 export class Collections extends Component {
     constructor() {
@@ -21,7 +20,7 @@ export class Collections extends Component {
   render() {
     return (
       <>
-        <CollectionHeader/>
+        {this.props.children}
         {this.props.render(this.state.collections)}
       </>
     )

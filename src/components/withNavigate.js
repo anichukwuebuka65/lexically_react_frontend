@@ -4,12 +4,12 @@ import { useNavigate, useParams, useSearchParams } from 'react-router-dom'
 const withNavigate = (Component) => {
     
     return function ParentComponent(props){
-       const [params , ] = useSearchParams()
+        const [searchParams] = useSearchParams()
        const {id} = useParams()
        const navigate = useNavigate()
 
         return (
-            <Component {...props} navigate={navigate} id={id} token={params.get("token")} />
+            <Component {...props} navigate={navigate} id={id} query={searchParams.get("open")}/>
         )
     }
  
