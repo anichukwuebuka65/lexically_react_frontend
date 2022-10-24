@@ -9,7 +9,7 @@ export class SignIn extends Component {
        name: "",
        error:""
     }
-    this.username = localStorage.getItem("lexically__name")
+    this.username = sessionStorage.getItem("lexically__name")
   }
 
   componentDidMount(){
@@ -32,7 +32,7 @@ export class SignIn extends Component {
         <input onChange={this.handleFileChange} value={name} type="text" className='w-2/3 mx-auto block mb-3 placeholder:tracking-wide placeholder:italic focus:outline-none rounded-md p-2 border' 
         placeholder="Your unsplash username"/>
         <p className='text-center mb-3'>
-          <button type="submit" onClick={() =>localStorage.setItem("lexically__name", this.state.name)}
+          <button type="submit" onClick={() =>sessionStorage.setItem("lexically__name", this.state.name)}
           className='font-semibold border-2 border-zinc-500 rounded-md tracking-wide py-1 px-3'>Sign In</button> 
           <em> to upload your photos</em>
         </p>

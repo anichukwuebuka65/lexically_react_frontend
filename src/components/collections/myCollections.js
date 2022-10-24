@@ -23,7 +23,7 @@ function MyCollections(props) {
             .catch(() => { 
                 setErr('Cross-check name  "'+ user +'" and try again')
             })
-            .finally(() => localStorage.setItem("lexically__name", user))
+            .finally(() => sessionStorage.setItem("lexically__name", user))
         )
     },[])
 
@@ -35,7 +35,7 @@ function MyCollections(props) {
     }
 
     useEffect(() => {
-        const username = localStorage.getItem("lexically__name")
+        const username = sessionStorage.getItem("lexically__name")
         fetchCollections(username).then( data => setCollections(data))
     },[fetchCollections])
 
